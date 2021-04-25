@@ -3,8 +3,8 @@ import warnings
 from cv2 import cv2
 
 warnings.filterwarnings("ignore")
-
-image = cv2.imread("img.jpg")
+name = input("Enter file name(with extension): ")
+image = cv2.imread(name)
 
 # image = cv2.resize(image, (800, 600))
 image_gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)    # Convert to BnW
