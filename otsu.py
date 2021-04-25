@@ -8,6 +8,7 @@ image = cv2.imread("img.jpg")
 
 # image = cv2.resize(image, (800, 600))
 image_gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)    # Convert to BnW
+print("Press 0 to convert")
 cv2.imshow('Before', image_gray)    # Show initial image
 cv2.waitKey(0)
 
@@ -18,6 +19,7 @@ histg = cv2.calcHist([image_gray], [0], None, [255], [0, 255])
 within = [] # To calculate within class variance
 between = [] # To calculate between class variance
 d = 0
+print("Find optimal value...")
 for i in range(len(histg)):
     x,y = np.split(histg, [i])
     x1 = np.sum(x)/(image.shape[0]*image.shape[1])  # Weight of Class 1
@@ -37,8 +39,9 @@ for i in range(len(histg)):
 
 m = np.argmin(within)
 n = np.argmax(between)
-print("Threshold Value for Within Class: ",m)
-print("Threshold Value for Between Class: ",n)      # Both will be same
+print("Threshold Value for Within Class: ", m)
+print("Threshold Value for Between Class: ", n)      # Both will be same
 (thresh, Bin) = cv2.threshold(image_gray, m, 255, cv2.THRESH_BINARY)
+print("Press 0 to close")
 cv2.imshow("After",Bin)
 cv2.waitKey(0)
